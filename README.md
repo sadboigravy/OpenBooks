@@ -2,7 +2,10 @@
 
 # OpenBooks
 
-![OpenBooks dashboard](docs/dashboard.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/dashboard-dark.png">
+  <img src="docs/dashboard-light.png" alt="OpenBooks dashboard">
+</picture>
 
 Self-hosted double-entry accounting for small businesses: invoices, bills, expenses, bank imports,
 chart of accounts, journal entries and financial reports, in one Docker container.
@@ -257,4 +260,22 @@ Frontend (hot-reloading dev server on port 5173, proxies `/api` to port 5000):
 cd frontend
 npm install
 npm run dev
+```
+
+## Testing
+
+Backend tests (82 of them, covering the ledger, every API area, taxes, payroll, Stripe, the assistant
+and bank feeds):
+
+```bash
+cd backend
+pytest
+```
+
+Browser tests: real clicks in Chromium against a throwaway Docker container, covering every page,
+every create/edit flow, user roles, phone and ultrawide layouts, and bank feeds. See
+[`e2e/README.md`](e2e/README.md) for details.
+
+```bash
+bash e2e/run.sh
 ```

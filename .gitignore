@@ -7,3 +7,4 @@ backend/data/
 data/
 .env
 *.log
+e2e/output/

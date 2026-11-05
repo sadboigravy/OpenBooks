@@ -1,0 +1,12 @@
+{
+  "name": "openbooks-e2e",
+  "private": true,
+  "description": "Browser end-to-end tests for OpenBooks (Playwright)",
+  "scripts": {
+    "test": "bash run.sh",
+    "install-browser": "playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}
