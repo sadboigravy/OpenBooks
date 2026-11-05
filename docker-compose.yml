@@ -1,0 +1,37 @@
+services:
+  openbooks:
+    build: .
+    container_name: openbooks
+    ports:
+      - "3000:3000"
+    environment:
+      # Initial admin login (only used the first time the database is created)
+      ADMIN_EMAIL: admin@openbooks.local
+      ADMIN_PASSWORD: openbooks
+      # Set to "true" to pre-fill a new database with sample data
+      DEMO_DATA: "false"
+      # Uncomment to set your own session secret (otherwise one is generated and saved in /data)
+      # SECRET_KEY: change-me-to-a-long-random-string
+      # Set to "true" if you serve OpenBooks over HTTPS (e.g. behind a reverse proxy)
+      # SESSION_COOKIE_SECURE: "true"
+      # The address customers use to reach this instance (used in "pay online" links)
+      # PUBLIC_URL: https://books.example.com
+      #
+      # Optional integrations. These can also be entered in Settings in the app;
+      # values set here take precedence and are never shown in the UI.
+      # STRIPE_SECRET_KEY: sk_live_...
+      # STRIPE_PUBLISHABLE_KEY: pk_live_...
+      # STRIPE_WEBHOOK_SECRET: whsec_...
+      # ANTHROPIC_API_KEY: sk-ant-...
+      # Bank feeds: your own Plaid and/or GoCardless Bank Account Data keys
+      # PLAID_CLIENT_ID: ...
+      # PLAID_SECRET: ...
+      # PLAID_ENV: sandbox            # or production
+      # GOCARDLESS_SECRET_ID: ...
+      # GOCARDLESS_SECRET_KEY: ...
+    volumes:
+      - openbooks-data:/data
+    restart: unless-stopped
+
+volumes:
+  openbooks-data:
